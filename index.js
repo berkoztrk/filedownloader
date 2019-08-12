@@ -22,6 +22,8 @@ class FileDownloader {
         this.url = opts.url;
         this.fileName = opts.fileName || DEFAULTS.DEFAULT_FILE_NAME;
         this.outputDirectory = opts.outputDirectory || DEFAULTS.DEFAULT_DIRECTORY;
+        this.onComplete = opts.onComplete;
+        this.onError = opts.onError;
         this.axiosInstance = axios.create({
             responseType: "stream",
         });
@@ -69,11 +71,18 @@ class FileDownloader {
     }
 
 
-    async download(opts) {
+    download(opts) {
         this._init(opts);
         this.axiosInstance.get(this.url).then(response => {
             const fileName = this._getFileName(response);
-            response.data.pipe(fs.createWriteStream(fileName))
+            response.data.pipe(fs.createWriteStream(fileName));
+            if (this.onComplete)
+                this.onComplete(fileName);
+        }).catch(err => {
+            if (this.onError)
+                this.onError(err);
+            else
+                throw err;
         });
     }
 

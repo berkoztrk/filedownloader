@@ -1,5 +1,5 @@
 {
-  "name": "filedownloader",
+  "name": "filedownloadutility",
   "version": "1.0.0",
   "description": "File download utility",
   "main": "index.js",
