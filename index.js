@@ -81,18 +81,16 @@ class FileDownloader {
     }
 
 
-    download(opts) {
+    async download(opts) {
         this._init(opts);
-        this.axiosInstance.get(this.url).then(response => {
-            const fileName = this._getFileName(response);
-            response.data.pipe(fs.createWriteStream(fileName));
-            if (this.onComplete)
-                this.onComplete(fileName);
-        }).catch(err => {
-            if (this.onError)
-                this.onError(err);
-            else
-                throw err;
+        return new Promise((resolve,reject) => {
+            this.axiosInstance.get(this.url).then(response => {
+                const fileName = this._getFileName(response);
+                response.data.pipe(fs.createWriteStream(fileName));
+                resolve(fileName)
+            }).catch(err => {
+                reject(err);
+            });
         });
     }
 

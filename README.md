@@ -10,11 +10,14 @@ File download utility for nodejs
 
 ```
     const fdu = require("filedownloadutility");
-    fdu.download({
-        url: "DOWNLOAD URL",                             // Download URL of the file
-        fileName : "dummy.txt",                          // Output file name
-        directory: "dummy/dummy_s",                      // Output directory
-        onComplete: () => {console.log("finished")},     // Success function after file downloaded successfully
-        onError: (error) => {console.error(error)}       // Error function if file download fails
-    })
+
+    (async() => {
+        const result = await fdu.download({
+            url: "DOWNLOAD URL",                             // Download URL of the file
+            fileName : "dummy.txt",                          // Output file name
+            outputDirectory: "dummy/dummy_s",                // Output directory
+        });
+        console.log(`File successfully downloaded to ${result}`)
+    })();
+
 ```
