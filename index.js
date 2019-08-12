@@ -67,7 +67,17 @@ class FileDownloader {
     }
 
     _getCombinedOutputPath(fileName) {
-        return `${this.outputDirectory}/${fileName}`
+        if(!fs.existsSync(this.outputDirectory))
+            throw `Directory does not exists`;
+        let i = 0;
+        let outPath = `${this.outputDirectory}/${fileName}`; 
+        while(fs.existsSync(outPath)){
+            const extIndex = outPath.lastIndexOf(".");
+            const sub = outPath.substring(extIndex);
+            outPath = outPath.replace(sub,i.toString() + sub);
+        }
+        
+        return outPath;
     }
 
 
