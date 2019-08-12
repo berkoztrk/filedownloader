@@ -1,0 +1,26 @@
+{
+  "name": "filedownloader",
+  "version": "1.0.0",
+  "description": "File download utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berkoztrk/filedownloader.git"
+  },
+  "keywords": [
+    "file",
+    "download",
+    "utility",
+    "save",
+    "path"
+  ],
+  "author": "Berk Öztürk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berkoztrk/filedownloader/issues"
+  },
+  "homepage": "https://github.com/berkoztrk/filedownloader#readme"
+}
